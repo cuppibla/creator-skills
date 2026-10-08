@@ -1,0 +1,102 @@
+/* ============================================================
+   MMA theme: POP — playful sticker style. Chunky black outlines,
+   hard offset shadows, saturated flat fills, warm cream canvas.
+   Load AFTER mma.css. Same components, engine, and sizes.
+   ============================================================ */
+:root {
+  --bg:    #FFF3DC;
+  --ink:   #1F2430;
+  --muted: #4A4F5C;
+  --faint: #8A8F9C;
+
+  --blue:   #2E90FF;
+  --blue-tint:   #BBDCFF;
+  --green:  #16A75C;
+  --green-tint:  #A9EFC9;
+  --amber:  #F59E00;
+  --amber-tint:  #FFD64F;
+  --purple: #7A5CFF;
+  --purple-tint: #CFC2FF;
+
+  --card: #FFFFFF;
+
+  --r-card: 24px;
+  --r-box:  18px;
+
+  --shadow-card: 8px 8px 0 #1F2430;
+  --glow-blue:   none;
+  --glow-purple: none;
+  --glow-green:  none;
+}
+
+html, body { background: #E8D9BC; }
+
+.kicker { background: #1F2430; color: #FFF3DC; }
+.kicker--amber  { background: #1F2430; color: var(--amber-tint); }
+.kicker--green  { background: #1F2430; color: var(--green-tint); }
+.kicker--purple { background: #1F2430; color: var(--purple-tint); }
+
+.pill {
+  border: 4px solid #1F2430;
+  box-shadow: 6px 6px 0 #1F2430;
+  background: var(--blue-tint); color: #113C6E;
+}
+.pill--green { border-color: #1F2430; background: var(--green-tint); color: #0C5430; }
+.pill--amber { border-color: #1F2430; background: var(--amber-tint); color: #6B4A00; }
+.pill--purple{ border-color: #1F2430; background: var(--purple-tint); color: #34206E; }
+.pill--dim   { border-color: #9BA0AC; box-shadow: 6px 6px 0 #9BA0AC; background: #F0EDE4; color: #8A8F9C; }
+
+.card { border: 4px solid #1F2430; }
+.card__title { color: #1F2430; }
+
+.chip { border: 3px solid #1F2430; background: var(--blue-tint); color: #113C6E; }
+.chip--purple { background: var(--purple-tint); color: #34206E; }
+.chip--green  { background: var(--green-tint);  color: #0C5430; }
+.chip--amber  { background: var(--amber-tint);  color: #6B4A00; }
+
+.step {
+  border: 4px solid #1F2430;
+  box-shadow: 6px 6px 0 #1F2430;
+}
+.step--blue  { background: var(--blue-tint);  color: #113C6E; border-color: #1F2430; }
+.step--green { background: var(--green-tint); color: #0C5430; border-color: #1F2430; }
+.step--amber { background: var(--amber-tint); color: #6B4A00; border-color: #1F2430; }
+.step.is-active {
+  background: #1F2430; border-color: #1F2430; color: #FFF3DC;
+  box-shadow: 6px 6px 0 var(--purple);
+}
+
+.flow .arrow { color: #1F2430; }
+
+.orb {
+  background: var(--blue);
+  border: 4px solid #1F2430;
+  box-shadow: 8px 8px 0 #1F2430;
+  position: relative;
+}
+.orb::after {
+  content: ''; position: absolute; top: 18%; left: 20%;
+  width: 26%; height: 26%; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+}
+.orb--green  { background: var(--green); }
+.orb--purple { background: var(--purple); }
+.orb__halo   { display: none; }
+.orb-wrap[data-loop="pulse"] .orb { transform: scale(calc(1 + var(--ls, 0) * 0.04)) rotate(calc(var(--ls, 0) * 2deg)); }
+
+.wave i { background: #1F2430; }
+.wave--green i { background: #16A75C; }
+
+.fn-chip { border: 4px solid #1F2430; box-shadow: 6px 6px 0 #1F2430; }
+.fn-chip .fn { color: var(--green); }
+.fn-chip .name { color: #1F2430; }
+.fn-chip--dim { border-color: #9BA0AC; box-shadow: 6px 6px 0 #9BA0AC; background: #F0EDE4; }
+
+.speech { background: var(--purple-tint); border: 4px solid #1F2430; color: #34206E; box-shadow: 6px 6px 0 #1F2430; }
+.speech--purple { background: var(--purple-tint); }
+
+.caption { font-weight: 800; }
+
+.mma-table { border: 4px solid #1F2430; box-shadow: 8px 8px 0 #1F2430; }
+.mma-table th { background: #1F2430; color: #FFF3DC; }
+.mma-table td { background: #FFFFFF; color: #1F2430; }

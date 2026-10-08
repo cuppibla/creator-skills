@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Agent 101 Live · Week 4 — The Archive</title>
+<style>
+  /* The Agent-Memory workshop's deck system (Topics/agent-memory-workshop/deck),
+     unchanged: same tokens, same chrome, same slide types. Week four adds a
+     code card, a three-line statement, a tall screenshot layout and the lab page. */
+  :root {
+    --bg: #FAF6F0; --frame: #F0EADD; --ink: #2A2520; --sub: #8A8378;
+    --green: #6E9A68; --greend: #4E7A48; --purple: #8B7EC8; --purpled: #6B5FA8;
+    --blue: #6E9BC0; --blued: #4E7A9E; --amber: #C08A2E; --amberd: #9A6D20;
+    --terra: #C96442; --tan: #C9BCA9; --cavbg: #FBF3E2; --cavln: #E8D9B8;
+    --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: var(--frame); overflow: hidden; }
+  #stage {
+    position: absolute; left: 50%; top: 50%; width: 1600px; height: 900px;
+    transform-origin: center; background: var(--bg); border-radius: 6px;
+    font-family: var(--sans); color: var(--ink);
+  }
+  .slide { position: absolute; inset: 0; display: none; }
+  .slide.on { display: block; }
+
+  /* chrome */
+  #hud { position: absolute; right: 28px; bottom: 20px; font: 700 15px var(--mono);
+         color: var(--tan); z-index: 9; letter-spacing: 1px; }
+  #tag { position: absolute; left: 28px; bottom: 20px; font: 700 14px var(--mono);
+         color: var(--tan); z-index: 9; letter-spacing: 2px; }
+  #mem { position: absolute; left: 50%; transform: translateX(-50%); top: 16px;
+         font: 700 14px var(--mono); letter-spacing: 2px; color: #B9AE9B;
+         background: rgba(255,255,255,.88); border: 1.5px solid #E5DCC9;
+         border-radius: 14px; padding: 6px 18px; z-index: 9; }
+  #mem:empty { display: none; }
+
+  /* image slides */
+  .full img.main { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+
+  /* screenshot slides */
+  .shot { padding: 64px 90px 80px; }
+  .shot .cap { font: 800 30px var(--sans); margin-bottom: 8px; }
+  .shot .capsub { font: 400 20px var(--sans); color: var(--sub); margin-bottom: 24px; }
+  .shot .frame { height: 660px; border: 3px solid var(--tan); border-radius: 22px;
+                 background: #fff; overflow: hidden; display: flex;
+                 align-items: center; justify-content: center; }
+  .shot .frame img { max-width: 96%; max-height: 96%; object-fit: contain; border-radius: 8px; }
+  .shot .frame.art { background: var(--frame); }
+  .shot .frame.art img { max-width: 100%; max-height: 100%; border-radius: 0; }
+  /* a tall screenshot: caption left, the column on the right */
+  .shot.tall { display: flex; gap: 56px; align-items: center; height: 100%; padding: 64px 90px 80px; }
+  .shot.tall .txt { flex: 0 0 540px; }
+  .shot.tall .cap { font: 800 46px/1.15 var(--sans); letter-spacing: -1px; margin-bottom: 18px; }
+  .shot.tall .capsub { font: 400 22px/1.5 var(--sans); margin-bottom: 0; }
+  .shot.tall .frame { flex: 1; height: 740px; }
+
+  /* generic text slide bits */
+  .pad { padding: 84px 100px; }
+  .eyebrow { font: 800 18px var(--sans); letter-spacing: 3px; color: var(--sub); margin-bottom: 18px; }
+  h1.big { font: 800 68px/1.15 var(--sans); letter-spacing: -1.5px; }
+  h1.big.sm { font-size: 56px; }
+  .subline { font: 400 24px var(--sans); color: var(--sub); margin-top: 18px; }
+  .mono { font-family: var(--mono); }
+
+  /* title slide */
+  .title-wrap { display: flex; height: 100%; align-items: center; padding: 0 100px; gap: 80px; }
+  .title-left { flex: 1; }
+  .title-left h1 { font: 800 92px/1.06 var(--sans); letter-spacing: -2.5px; }
+  .title-left .accent { color: var(--purpled); }
+  .title-left .sub { font: 400 26px/1.45 var(--sans); color: var(--sub); margin-top: 26px; }
+  .title-left .meta { font: 700 17px var(--mono); color: var(--tan); margin-top: 60px; letter-spacing: 1px; }
+  .title-left .meta.top { margin: 0 0 26px; color: var(--amberd); }
+  .title-hero img { width: 440px; height: 720px; object-fit: cover; border-radius: 36px; }
+
+  /* loop slide */
+  .steps { display: flex; gap: 26px; margin: 54px 0 60px; align-items: stretch; }
+  .step { flex: 1; background: #fff; border: 3px solid var(--tan); border-radius: 22px;
+          padding: 30px 34px; }
+  .step .k { font: 800 17px var(--sans); letter-spacing: 2px; color: var(--sub); }
+  .step .t { font: 800 30px var(--sans); margin-top: 10px; }
+  .step:nth-child(2) { border-color: var(--green); }
+  .step:nth-child(2) .t { color: var(--greend); }
+  .codecard { background: #fff; border: 3px solid var(--green); border-radius: 22px;
+              padding: 34px 44px; font: 700 24px/1.9 var(--mono); white-space: pre-wrap; }
+  .codecard .strike { color: var(--terra); text-decoration: line-through 3px; }
+  .codecard .live { color: var(--greend); }
+  .codecard .hl { color: var(--amberd); }
+  .codecard .k { color: var(--purpled); }
+  .codecard .dim { color: var(--sub); font-weight: 400; }
+
+  /* code slide — the kicker sits at the bottom, like the cliff */
+  .code .codecard { margin-top: 44px; }
+
+  /* three-line statement */
+  .bigline { font: 800 66px/1.28 var(--sans); letter-spacing: -1.5px; }
+  .bigline.dim { color: var(--tan); }
+  .bigline.hot { color: var(--terra); }
+  .lines-wrap { margin-top: 30px; }
+  .line-note { margin-top: 44px; font: 400 26px/1.5 var(--sans); color: var(--sub); max-width: 1200px; }
+  .line-note b { color: var(--ink); font-weight: 800; }
+
+  /* cliff slide */
+  .duo { display: flex; gap: 40px; margin-top: 56px; }
+  .duo .card { flex: 1; border-radius: 24px; border: 3.5px solid var(--tan);
+               background: #fff; padding: 40px 44px; }
+  .duo .card.bad { border-color: var(--terra); }
+  .duo .card.good { border-color: var(--green); }
+  .duo .lbl { font: 800 17px var(--sans); letter-spacing: 2px; margin-bottom: 20px; }
+  .bad .lbl { color: var(--terra); } .good .lbl { color: var(--greend); }
+  .duo code { display: block; font: 700 22px/1.6 var(--mono); margin-bottom: 22px; }
+  .duo .res { font: 800 30px var(--sans); }
+  .bad .res { color: var(--terra); } .good .res { color: var(--greend); }
+
+  .kicker { position: absolute; left: 100px; right: 100px; bottom: 34px;
+            background: var(--cavbg); border: 2px solid var(--cavln); border-radius: 14px;
+            padding: 16px 26px; font: 700 21px/1.45 var(--sans); color: #8A5A2B; }
+
+  /* cast slide */
+  .castrow { display: flex; gap: 50px; margin-top: 54px; }
+  .castcard { flex: 1; background: #fff; border: 3px solid var(--tan); border-radius: 28px;
+              padding: 38px 36px; text-align: center; }
+  .castcard img { width: 240px; height: 240px; object-fit: cover; border-radius: 26px; }
+  .castcard .cn { font: 800 38px var(--sans); margin-top: 24px; }
+  .castcard .cr { font: 400 21px/1.5 var(--sans); color: var(--sub); margin-top: 12px; }
+  .castcard .cr b { color: var(--ink); }
+
+  /* scene slide */
+  .scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scene .capwrap { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; }
+  .scene .capwrap.top { bottom: auto; top: 56px; }
+  .scene .scap { display: inline-block; background: rgba(250,246,240,.92); padding: 14px 34px;
+                 border-radius: 18px; font: 800 40px var(--sans); letter-spacing: -0.5px; color: var(--ink); }
+  .scene .scap2 { display: inline-block; margin-top: 12px; background: rgba(250,246,240,.92);
+                  padding: 9px 22px; border-radius: 12px; font: 400 22px var(--sans); color: #6B6257; }
+
+  /* pains slide */
+  .painrow { display: flex; gap: 40px; margin-top: 54px; }
+  .pain { flex: 1; background: #fff; border-radius: 26px; padding: 36px 38px; border: 3.5px solid; }
+  .pain .scope { font: 800 16px var(--mono); letter-spacing: 2px; margin-bottom: 18px; }
+  .pain .pq { font: 800 31px/1.25 var(--sans); letter-spacing: -0.5px; min-height: 120px; }
+  .pain .qq { font: 400 19px/1.5 var(--sans); color: var(--terra); font-style: italic; margin-top: 18px; }
+  .pain.p1 { border-color: var(--green); }  .pain.p1 .scope { color: var(--greend); } .pain.p1 .pq { color: var(--greend); }
+  .pain.p2 { border-color: var(--purple); } .pain.p2 .scope { color: var(--purpled); } .pain.p2 .pq { color: var(--purpled); }
+  .pain.p3 { border-color: var(--blue); }   .pain.p3 .scope { color: var(--blued); }  .pain.p3 .pq { color: var(--blued); }
+  .painnote { margin-top: 40px; font: 700 22px var(--sans); color: var(--sub); }
+
+  /* the lab page */
+  .items { margin-top: 44px; }
+  .items div { display: flex; gap: 34px; padding: 22px 0; border-top: 1.5px solid #EAE3D6;
+               font: 400 26px/1.45 var(--sans); color: var(--sub); }
+  .items b { color: var(--ink); min-width: 220px; font-weight: 800; }
+  .checkline { position: absolute; left: 0; right: 0; bottom: 118px; text-align: center;
+               font: 800 34px var(--sans); }
+  .checkline .ok { color: var(--greend); }
+  .finalline { position: absolute; left: 0; right: 0; bottom: 60px; text-align: center;
+               font: 400 22px var(--sans); color: var(--sub); }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const I = "img/";
+
+const slides = [
+  { tag:"S1", act:"", type:"title" },
+  { tag:"S2", act:"PROLOGUE", type:"scene", src:I+"a-vesper-desk.jpg",
+    cap:"Your lantern goes out at night.",
+    sub:"so you go and ask" },
+  { tag:"S3", act:"PROLOGUE", type:"cast" },
+  { tag:"S4", act:"PROLOGUE", type:"pains" },
+  { tag:"S5", act:"PROLOGUE", type:"image", src:I+"c0-tower-agenda.png", mem:"FOUR FLOORS · FOUR STORES" },
+  { tag:"S6", act:"PROLOGUE", type:"image", src:I+"p1-four-memories.png", mem:"WORKING · EPISODIC · SEMANTIC" },
+  { tag:"S7", act:"PROLOGUE", type:"loop" },
+  { tag:"S8", act:"PROLOGUE", type:"shot", src:I+"s-first-visit.png",
+    cap:"The tower re-reads your files.",
+    sub:"three edits, one line each — a floor lights when the line is there" },
+
+  { tag:"S9",  act:"ACT 1 · THE DESK", type:"image", src:I+"c0-tower-act1.png", mem:"ACT 1 · THE SLIP" },
+  { tag:"S10",  act:"ACT 1", type:"shot", src:I+"s-state-panel.png", mem:"WORKING MEMORY",
+    cap:"Four chips fired. State was empty.",
+    sub:"one line later, this" },
+  { tag:"S11", act:"ACT 1", type:"image", src:I+"c1-slip.png", mem:"WRITTEN BY CODE" },
+  { tag:"S12", act:"ACT 1", type:"code", mem:"WORKING MEMORY",
+    eyebrow:"EDIT ONE &#183; THE WHOLE OF IT", h1:"State is written by code, never by the conversation.",
+    code:`case[field] = value
+<span class="hl">tool_context.state[CASE] = case</span>
+<span class="dim">return {"written": {field: value}}</span>`,
+    note:"a local dict dies with the call" },
+  { tag:"S13", act:"ACT 1", type:"code", mem:"READ BACK",
+    eyebrow:"AND THE INSTRUCTION READS IT BACK", h1:"Two halves, one prompt.",
+    code:`def house(ctx):
+    <span class="dim"># the prompt is built in code, from state &mdash; every turn</span>
+    return HOUSE.format(
+        slip=_slip_lines(ctx.state.get(CASE) or {}),
+        recalled=_tower_lines(ctx.state.get(RECALLED) or []))`,
+    note:"THE SLIP from state &#183; THE TOWER from recall &mdash; both put there by a line you wrote" },
+  { tag:"S14", act:"ACT 1", type:"shot", tall:true, src:I+"s-session-list.png", mem:"WORKING MEMORY, KEPT",
+    cap:"The process died. The visit didn&rsquo;t.",
+    sub:"the workbench opens the same file" },
+  { tag:"S15", act:"ACT 1", type:"image", src:I+"c2-one-file.png", mem:"ONE FILE, TWO WINDOWS" },
+  { tag:"S16", act:"ACT 1", type:"cliff", mem:"WORKING MEMORY, KEPT" },
+  { tag:"S17", act:"ACT 1", type:"shot", src:I+"s-slip.png", mem:"FOUR LINES",
+    cap:"She nods. The slip doesn&rsquo;t move.",
+    sub:"her form has four lines &mdash; the rest has nowhere to go" },
+
+  { tag:"S18", act:"ACT 2 · YOUR DRAWER", type:"image", src:I+"c0-tower-act2.png", mem:"ACT 2 · YOUR DRAWER" },
+  { tag:"S19", act:"ACT 2", type:"shot", src:I+"s-stranger.png", mem:"SESSION SCOPE",
+    cap:"A month later. Pleased to meet you.",
+    sub:"a session is one visit &mdash; nothing carried over" },
+  { tag:"S20", act:"ACT 2", type:"code", mem:"USER SCOPE",
+    eyebrow:"EDIT TWO &#183; FIVE CHARACTERS", h1:"Same key. Same value. Same tool writing it.",
+    code:`CASE = <span class="strike">"case"</span>          <span class="dim">&rarr;</span>          CASE = <span class="hl">"user:case"</span>`,
+    note:"a session is one visit &mdash; a prefix is a lifetime" },
+  { tag:"S21", act:"ACT 2", type:"image", src:I+"c3-drawers.png", mem:"STATE SCOPES" },
+  { tag:"S22", act:"ACT 2", type:"shot", src:I+"s-drawer.png", mem:"USER SCOPE, KEPT",
+    cap:"The drawer crossed the month.",
+    sub:"ask what you already tried &mdash; she still doesn&rsquo;t know" },
+
+  { tag:"S23", act:"ACT 3 · THE CARDS", type:"image", src:I+"c0-tower-act3.png", mem:"EPISODIC IN · SEMANTIC OUT" },
+  { tag:"S24", act:"ACT 3", type:"image", src:I+"c4-two-policies.png", mem:"WHAT TO KEEP · WHEN TO LOOK" },
+  { tag:"S25", act:"ACT 3", type:"image", src:I+"c22-timeline.png", mem:"WHEN IT IS READ, WHEN IT IS WRITTEN" },
+  { tag:"S26", act:"ACT 3", type:"shot", tall:true, src:I+"s-rise.png", mem:"EPISODIC · FILED",
+    cap:"Closing time. The words lift off.",
+    sub:"&#127769; &mdash; the whole day goes to the shelf" },
+  { tag:"S27", act:"ACT 3", type:"line", mem:"FILED ≠ REMEMBERED", eyebrow:"ACT 3 &#183; THE CATCH",
+    lines:["Three cards on the shelf.", "You watched them land.", "She still doesn&rsquo;t know."],
+    note:"Nobody is looking at them. <b>Filed is not remembered.</b>" },
+  { tag:"S28", act:"ACT 3", type:"code", mem:"THE RECALL POLICY",
+    eyebrow:"EDIT THREE &#183; THE ASKING", h1:"A function node looks, before she answers.",
+    code:`try:
+    <span class="hl">found = await ctx.search_memory(query)</span>
+<span class="k">except</span> ValueError:
+    <span class="dim">pass</span>`,
+    note:"so the times it finds nothing are visible too" },
+  { tag:"S29", act:"ACT 3", type:"image", src:I+"c23-inmemory.png", mem:"InMemoryMemoryService" },
+  { tag:"S30", act:"ACT 3", type:"image", src:I+"c8-overlap.png", mem:"RECALL IS NOT FREE" },
+  { tag:"S31", act:"ACT 3", type:"shot", tall:true, art:true, src:I+"a-night.jpg", mem:"IN-PROCESS · DIES WITH THE PROCESS",
+    cap:"Floor one, lit. Floor two, lit. Floor three, dark.",
+    sub:"what you said lived in the process. <b>Persistence is not memory.</b>" },
+  { tag:"S32", act:"ACT 3", type:"image", src:I+"c5-two-homes.png", mem:"SAME SLOT, TWO HOMES" },
+  { tag:"S33", act:"ACT 3", type:"code", mem:"MEMORY BANK",
+    eyebrow:"CONNECT IT &#183; NO EDIT, THREE PARAMETERS", h1:"Same slot. Different home.",
+    code:`_memory = VertexAiMemoryBankService(
+    project=os.environ["GOOGLE_CLOUD_PROJECT"],    <span class="dim"># which project</span>
+    location="us-central1",                        <span class="dim"># where it lives</span>
+    agent_engine_id=AGENT_ENGINE.split("/")[-1],   <span class="dim"># WHICH tower</span>
+)`,
+    note:"the same Runner slot &mdash; nothing in archive/agent.py changes" },
+  { tag:"S34", act:"ACT 3", type:"image", src:I+"c24-bank.png", mem:"MEMORY BANK" },
+  { tag:"S35", act:"ACT 3", type:"image", src:I+"c7-prompt.png", mem:"WHAT SHE READ" },
+  { tag:"S36", act:"ACT 3", type:"image", src:I+"c6-distill.png", mem:"EPISODIC IN · SEMANTIC OUT" },
+  { tag:"S37", act:"ACT 3", type:"shot", tall:true, src:I+"s-forget.png", mem:"FORGETTING IS THE APPLICATION'S",
+    cap:"Floor three empties. Floor one keeps every book.",
+    sub:"only the memory is theirs to withdraw" },
+
+  { tag:"S38", act:"ACT 4 · THE SEASON", type:"image", src:I+"c0-tower-act4.png", mem:"ACT 4 · THE SEASON" },
+  { tag:"S39", act:"ACT 4", type:"scene", src:I+"e2-season.png", mem:"SCOPE, BY CONSTRUCTION",
+    cap:"Thirty-one of them. Same batch.",
+    sub:"other people&rsquo;s visits are not her memory" },
+  { tag:"S40", act:"ACT 4", type:"image", src:I+"c16-rag.png", mem:"RAG" },
+  { tag:"S41", act:"ACT 4", type:"image", src:I+"c19-meaning.png", mem:"BY MEANING" },
+  { tag:"S42", act:"ACT 4", type:"image", src:I+"c20-tables.png", mem:"TABLES → GRAPH" },
+  { tag:"S43", act:"ACT 4", type:"image", src:I+"c21-match.png", mem:"MATCH" },
+  { tag:"S44", act:"ACT 4", type:"image", src:I+"c25-graph-rag-process.png", mem:"GRAPH RAG · THE WHOLE PROCESS" },
+  { tag:"S45", act:"ACT 4", type:"image", src:I+"c9-season.png", mem:"HOW FLOOR FOUR IS WIRED" },
+  { tag:"S46", act:"ACT 4", type:"image", src:I+"c11-warehouse.png", mem:"IN BIGQUERY · VECTOR_SEARCH" },
+  { tag:"S47", act:"ACT 4", type:"image", src:I+"c12-graph.png", mem:"IN BIGQUERY · PROPERTY GRAPH" },
+  { tag:"S48", act:"ACT 4", type:"image", src:I+"c13-gql-sql.png", mem:"GQL vs SQL · THE SAME WALK" },
+  { tag:"S49", act:"ACT 4", type:"shot", tall:true, src:I+"s-season-answer.png", mem:"THE PATH IS THE CITATION",
+    cap:"The path is the citation.",
+    sub:"anyone can walk it again" },
+
+  { tag:"S50", act:"FINALE", type:"shot", src:I+"e4-every-floor-lit.png", mem:"4 / 4 LIT",
+    cap:"Every floor lit.",
+    sub:"three lines &#183; one tower &#183; one warehouse" },
+  { tag:"S51", act:"FINALE", type:"image", src:I+"c10-everything.png", mem:"SWAP ANY BOX" },
+  { tag:"S52", act:"FINALE", type:"image", src:I+"c14-replaced.png" },
+  { tag:"S53", act:"FINALE", type:"image", src:I+"c15-three-questions.png" },
+  { tag:"S54", act:"FINALE", type:"image", src:I+"c0-tower-final.png", mem:"A RECORD IS NOT A MEMORY" },
+  { tag:"S55", act:"FINALE", type:"scene", src:I+"a-closing.jpg",
+    cap:"Next week: she stops taking turns.",
+    sub:"week five &mdash; the Night Market, live" },
+  { tag:"S56", act:"FINALE", type:"lab" },
+];
+
+function el(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+
+function render(s) {
+  if (s.type === "title") return el(`<div class="slide"><div class="title-wrap">
+    <div class="title-left">
+      <div class="meta top">AGENT 101 LIVE &#183; WEEK 4 OF 5</div>
+      <h1>Does she<br><span class="accent">remember?</span></h1>
+      <div class="sub">four floors of agent memory &mdash;<br>and the three lines that light them</div>
+      <div class="meta">ADK 2.8 &#183; Gemini &#183; Memory Bank &#183; BigQuery</div>
+    </div>
+    <div class="title-hero"><img src="${I}a-tower.jpg"></div></div></div>`);
+
+  if (s.type === "scene") return el(`<div class="slide scene">
+    <img src="${s.src}">
+    <div class="capwrap${s.top ? " top" : ""}"><span class="scap">${s.cap}</span><br><span class="scap2">${s.sub}</span></div></div>`);
+
+  if (s.type === "cast") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">THE SETUP</div>
+    <h1 class="big">One desk. One visitor. One season.</h1>
+    <div class="castrow">
+      <div class="castcard"><img src="${I}a-vesper.jpg">
+        <div class="cn">The agent</div>
+        <div class="cr">answers every visitor. Tonight she remembers nothing. <b>You fix that.</b></div></div>
+      <div class="castcard"><img src="${I}a-fox.jpg">
+        <div class="cn">You</div>
+        <div class="cr">your lantern goes out at night &#183; case <b class="mono">k7f2</b> &#183; mark <b class="mono">q7</b></div></div>
+      <div class="castcard"><img src="${I}e2-season.png">
+        <div class="cn">The season</div>
+        <div class="cr">everyone else&rsquo;s visits &mdash; thirty-one about the same mark</div></div>
+    </div>
+    </div></div>`);
+
+  if (s.type === "pains") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">THREE SENTENCES YOU HAVE HEARD ON A SUPPORT CALL</div>
+    <h1 class="big">Three sentences, one dark tower.</h1>
+    <div class="painrow">
+      <div class="pain p1"><div class="scope">ACT TWO &#183; YOUR DRAWER</div>
+        <div class="pq">&ldquo;Welcome! How can I help you today?&rdquo;</div>
+        <div class="qq">&hellip;to somebody with an open case from last month.</div></div>
+      <div class="pain p2"><div class="scope">ACT THREE &#183; THE CARDS</div>
+        <div class="pq">&ldquo;Could you tell me again what you&rsquo;ve tried?&rdquo;</div>
+        <div class="qq">You said it. It just had nowhere to go.</div></div>
+      <div class="pain p3"><div class="scope">ACT FOUR &#183; THE SEASON</div>
+        <div class="pq">&ldquo;We&rsquo;ve never seen this before.&rdquo;</div>
+        <div class="qq">Thirty-one people came in about it this season.</div></div>
+    </div>
+    <div class="painnote">Each sentence is a dark floor of the tower.</div>
+    </div></div>`);
+
+  if (s.type === "image") return el(`<div class="slide full"><img class="main" src="${s.src}"></div>`);
+
+  if (s.type === "shot") {
+    if (s.tall) return el(`<div class="slide"><div class="shot tall">
+      <div class="txt"><div class="cap">${s.cap}</div><div class="capsub">${s.sub}</div></div>
+      <div class="frame${s.art ? " art" : ""}"><img src="${s.src}"></div></div></div>`);
+    return el(`<div class="slide"><div class="shot">
+      <div class="cap">${s.cap}</div><div class="capsub">${s.sub}</div>
+      <div class="frame${s.art ? " art" : ""}"><img src="${s.src}"></div></div></div>`);
+  }
+
+  if (s.type === "loop") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">HOW THE LAB WORKS</div>
+    <h1 class="big">Every chapter is the same loop.</h1>
+    <div class="steps">
+      <div class="step"><div class="k">READ</div><div class="t">run it broken</div></div>
+      <div class="step"><div class="k">EDIT</div><div class="t">write the one line</div></div>
+      <div class="step"><div class="k">RELAUNCH</div><div class="t">watch the floor light</div></div>
+    </div>
+    <div class="codecard"><span class="strike"># &#128073; EDIT ONE</span>  <span class="live">tool_context.state[CASE] = case</span>
+<span class="dim">three edits, one line each</span></div>
+    </div></div>`);
+
+  if (s.type === "code") return el(`<div class="slide"><div class="pad code">
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h1 class="big${s.h1.length > 44 ? " sm" : ""}">${s.h1}</h1>
+    <div class="codecard">${s.code}</div>
+    <div class="kicker">${s.note}</div>
+    </div></div>`);
+
+  if (s.type === "line") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">${s.eyebrow}</div>
+    <div class="lines-wrap">${s.lines.map((l, i) => `<div class="bigline ${i === s.lines.length - 1 ? "hot" : "dim"}">${l}</div>`).join("")}</div>
+    <div class="line-note">${s.note}</div>
+    </div></div>`);
+
+  if (s.type === "cliff") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">ACT 1 &#183; THE CLIFF</div>
+    <h1 class="big">Three slashes.</h1>
+    <div class="duo">
+      <div class="card bad"><div class="lbl">RESTART WITH</div>
+        <code>--session_service_uri<br>"sqlite://archive.db"</code>
+        <div class="res">silently in memory &mdash; nothing kept</div></div>
+      <div class="card good"><div class="lbl">RESTART WITH</div>
+        <code>--session_service_uri<br>"sqlite:///archive.db"</code>
+        <div class="res">a file &mdash; everything is back</div></div>
+    </div>
+    <div class="kicker">The workbench reads the same file.</div>
+    </div></div>`);
+
+  if (s.type === "lab") return el(`<div class="slide"><div class="pad">
+    <div class="eyebrow">CLIMB IT YOURSELF</div>
+    <h1 class="big sm">github.com/cuppibla/agent-valley-archive</h1>
+    <div class="items">
+      <div><b>Costs you</b> about ninety minutes &#183; three edited lines</div>
+      <div><b>You keep</b> an archivist who finally knows who you are</div>
+      <div><b>Next week</b> the Night Market &mdash; she stops taking turns</div>
+    </div>
+    <div class="checkline">
+      <span class="ok">the desk &#10003;</span> &nbsp;&#183;&nbsp;
+      <span class="ok">your drawer &#10003;</span> &nbsp;&#183;&nbsp;
+      <span class="ok">the cards &#10003;</span> &nbsp;&#183;&nbsp;
+      <span class="ok">the season &#10003;</span></div>
+    <div class="finalline">A record is not a memory. Facts and preferences belong in different stores.</div>
+    </div></div>`);
+}
+
+const stage = document.getElementById("stage");
+slides.forEach(s => stage.appendChild(render(s)));
+stage.appendChild(el(`<div id="tag"></div>`));
+stage.appendChild(el(`<div id="mem"></div>`));
+stage.appendChild(el(`<div id="hud"></div>`));
+
+let cur = -1;
+const nodes = stage.querySelectorAll(".slide");
+function go(i) {
+  i = Math.max(0, Math.min(slides.length - 1, i));
+  if (i === cur) return;
+  if (cur >= 0) nodes[cur].classList.remove("on");
+  nodes[i].classList.add("on");
+  cur = i;
+  location.hash = "#" + (i + 1);
+  document.getElementById("hud").textContent = (i + 1) + " / " + slides.length;
+  const s = slides[i];
+  document.getElementById("tag").textContent = s.act ? s.act + "  ·  " + s.tag : s.tag;
+  document.getElementById("mem").textContent = s.mem || "";
+}
+function fit() {
+  const k = Math.min(innerWidth / 1600, innerHeight / 900);
+  stage.style.transform = `translate(-50%,-50%) scale(${k})`;
+}
+addEventListener("resize", fit); fit();
+addEventListener("keydown", e => {
+  if (["ArrowRight", " ", "PageDown"].includes(e.key)) go(cur + 1);
+  if (["ArrowLeft", "PageUp"].includes(e.key)) go(cur - 1);
+  if (e.key === "Home") go(0);
+  if (e.key === "End") go(slides.length - 1);
+});
+addEventListener("hashchange", () => go((parseInt(location.hash.slice(1)) || 1) - 1));
+go((parseInt(location.hash.slice(1)) || 1) - 1);
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* ============================================================
+   MMA theme: DARK — deep navy canvas, glowing accents.
+   Load AFTER mma.css. Same components, same engine, same sizes.
+   ============================================================ */
+:root {
+  --bg:    #0F1620;
+  --ink:   #E8EEF6;
+  --muted: #A7B2C2;
+  --faint: #66748A;
+
+  --blue:   #4D9FFF;
+  --blue-tint:   rgba(77, 159, 255, 0.16);
+  --green:  #4ECB71;
+  --green-tint:  rgba(78, 203, 113, 0.14);
+  --amber:  #FFB300;
+  --amber-tint:  rgba(255, 179, 0, 0.14);
+  --purple: #9B7DFF;
+  --purple-tint: rgba(155, 125, 255, 0.18);
+
+  --card: #1A2330;
+
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --glow-blue:   0 0 52px 12px rgba(77, 159, 255, 0.30);
+  --glow-purple: 0 0 52px 14px rgba(155, 125, 255, 0.40);
+  --glow-green:  0 0 52px 12px rgba(78, 203, 113, 0.30);
+}
+
+html, body { background: #06090e; }
+
+.kicker         { background: var(--blue-tint);   color: var(--blue); }
+.kicker--amber  { background: var(--amber-tint);  color: var(--amber); }
+.kicker--green  { background: var(--green-tint);  color: var(--green); }
+.kicker--purple { background: var(--purple-tint); color: var(--purple); }
+
+.pill--amber { background: var(--amber-tint); color: var(--amber); }
+.pill--dim   { border-color: #3A4657; background: rgba(255,255,255,0.04); color: #7C8899; }
+
+.card__title { color: #F2F6FC; }
+
+.chip--amber { background: var(--amber-tint); color: var(--amber); }
+
+.step--amber { background: var(--amber-tint); color: var(--amber); }
+.step.is-active { background: var(--purple); border-color: var(--purple); color: #FFF; }
+
+.orb        { background: radial-gradient(circle at 42% 38%, #1F6FE0 0%, #4D9FFF 55%, #86C1FF 100%); }
+.orb--green { background: radial-gradient(circle at 42% 38%, #2AA355 0%, #4ECB71 55%, #8FE5AC 100%); }
+.orb--purple{ background: radial-gradient(circle at 42% 38%, #7A55FF 0%, #9B7DFF 55%, #C3B2FF 100%); }
+.orb__halo  { background: radial-gradient(circle, rgba(77,159,255,0.22) 0%, rgba(77,159,255,0) 70%); }
+
+.wave i { box-shadow: 0 0 14px rgba(77, 159, 255, 0.55); }
+.wave--green i { box-shadow: 0 0 14px rgba(78, 203, 113, 0.55); }
+
+.fn-chip .name { color: #D7DEE9; }
+.fn-chip--dim  { background: #141B26; }
+.fn-chip--dim .name { color: #647080; }
+
+.speech { background: var(--blue); color: #06121F; }
+.speech--purple { background: var(--purple); color: #14093A; }
+
+.mma-table td { background: #141B26; color: #C6CFDB; }
+.mma-table tr.hl td { background: var(--blue-tint); color: var(--blue); }

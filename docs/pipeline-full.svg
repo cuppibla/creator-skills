@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="680" viewBox="0 0 1600 680">
+  <style>
+    text { font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; fill: #0F172A; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; }
+    .title { font-size: 34px; font-weight: 700; }
+    .sub { font-size: 20px; fill: #64748B; }
+    .tag { font-size: 18px; font-weight: 600; fill: #334155; }
+    .h { font-size: 17px; font-weight: 700; }
+    .skill { font-size: 13px; font-weight: 700; fill: #4F46E5; }
+    .out { font-size: 12.5px; fill: #64748B; }
+  </style>
+  <defs>
+    <linearGradient id="agent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker>
+  </defs>
+  <rect width="1600" height="680" fill="#FFFFFF"/>
+
+  <text class="title" x="70" y="60">The presentation pipeline, and the skill at each stage</text>
+  <text class="sub" x="70" y="92">Six stages every deck goes through, left to right. The script becomes the speaker notes of the PPTX. Below: skills pulled in when the topic needs them.</text>
+
+  <!-- ============ main row ============ -->
+  <rect x="60" y="125" width="1472" height="175" rx="18" fill="#F8FAFC" fill-opacity="0.6" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+  <text class="mono tag" x="84" y="150">every deck</text>
+
+  <!-- Source (artifact) -->
+  <rect x="76" y="165" width="120" height="100" rx="14" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
+  <text class="h" x="136" y="201" text-anchor="middle">Source</text>
+  <text class="mono out" x="136" y="225" text-anchor="middle" style="fill:#0F172A">the lab repo</text>
+  <text class="mono out" x="136" y="245" text-anchor="middle">read it first</text>
+
+  <!-- 1 Story plan -->
+  <rect x="232" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="324" y="201" text-anchor="middle">Story plan</text>
+  <text class="mono skill" x="324" y="225" text-anchor="middle" style="fill:#B45309">no skill yet</text>
+  <text class="mono out" x="324" y="245" text-anchor="middle">*-story-plan.md</text>
+  <circle cx="232" cy="165" r="14" fill="#0F172A"/><text x="232" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">1</text>
+
+  <!-- 2 Diagrams -->
+  <rect x="452" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="544" y="201" text-anchor="middle">Diagrams</text>
+  <text class="mono skill" x="544" y="225" text-anchor="middle">/cream-deck</text>
+  <text class="mono out" x="544" y="245" text-anchor="middle">1 idea = 1 svg → png</text>
+  <circle cx="452" cy="165" r="14" fill="#0F172A"/><text x="452" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">2</text>
+
+  <!-- 3 Deck -->
+  <rect x="672" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="764" y="201" text-anchor="middle">Deck</text>
+  <text class="mono skill" x="764" y="225" text-anchor="middle">/cream-deck</text>
+  <text class="mono out" x="764" y="245" text-anchor="middle">index.html · 1600×900</text>
+  <circle cx="672" cy="165" r="14" fill="#0F172A"/><text x="672" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">3</text>
+
+  <!-- 4 Script -->
+  <rect x="892" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="984" y="201" text-anchor="middle">Script</text>
+  <text class="mono skill" x="984" y="225" text-anchor="middle">/plain-script</text>
+  <text class="mono out" x="984" y="245" text-anchor="middle">Say · On screen · Sec</text>
+  <circle cx="892" cy="165" r="14" fill="#0F172A"/><text x="892" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">4</text>
+
+  <!-- 5 Polish -->
+  <rect x="1112" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="1204" y="201" text-anchor="middle">Polish</text>
+  <text class="mono skill" x="1204" y="225" text-anchor="middle">/teleprompter-polish</text>
+  <text class="mono out" x="1204" y="245" text-anchor="middle">read-aloud .txt</text>
+  <circle cx="1112" cy="165" r="14" fill="#0F172A"/><text x="1112" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">5</text>
+
+  <!-- 6 Export -->
+  <rect x="1332" y="165" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="1424" y="201" text-anchor="middle">Export</text>
+  <text class="mono skill" x="1424" y="225" text-anchor="middle">/cream-deck</text>
+  <text class="mono out" x="1424" y="245" text-anchor="middle">editable + flat .pptx</text>
+  <circle cx="1332" cy="165" r="14" fill="#0F172A"/><text x="1332" y="170" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">6</text>
+
+  <!-- main arrows -->
+  <line x1="196" y1="215" x2="230" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="416" y1="215" x2="450" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="636" y1="215" x2="670" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="856" y1="215" x2="890" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="1076" y1="215" x2="1110" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="1296" y1="215" x2="1330" y2="215" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ============ optional row ============ -->
+  <rect x="60" y="345" width="1472" height="160" rx="18" fill="#F8FAFC" fill-opacity="0.6" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+  <text class="mono tag" x="84" y="370">when needed</text>
+
+  <!-- Charts -->
+  <rect x="372" y="385" width="156" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="450" y="419" text-anchor="middle" font-size="15">Charts</text>
+  <text class="mono skill" x="450" y="443" text-anchor="middle">/dataviz</text>
+  <text class="mono out" x="450" y="463" text-anchor="middle">data, not wiring</text>
+  <line x1="470" y1="385" x2="470" y2="267" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- White diagrams -->
+  <rect x="542" y="385" width="156" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="620" y="419" text-anchor="middle" font-size="15">White diagrams</text>
+  <text class="mono skill" x="620" y="443" text-anchor="middle">/arch-diagram</text>
+  <text class="mono out" x="620" y="463" text-anchor="middle">blog · white decks</text>
+  <line x1="620" y1="385" x2="620" y2="267" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- Hero art (model call) -->
+  <rect x="712" y="385" width="156" height="100" rx="14" fill="url(#agent)"/>
+  <text class="h" x="790" y="419" text-anchor="middle" font-size="15" style="fill:#FFFFFF">✦ Hero art</text>
+  <text class="mono" x="790" y="443" text-anchor="middle" font-size="13" font-weight="700" style="fill:#FFFFFF">Nano Banana</text>
+  <text class="mono" x="790" y="463" text-anchor="middle" font-size="12.5" style="fill:#FFFFFF" opacity="0.85">seeded with refs</text>
+  <line x1="790" y1="385" x2="790" y2="267" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- Retention pass -->
+  <rect x="882" y="385" width="156" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="960" y="419" text-anchor="middle" font-size="15">Retention pass</text>
+  <text class="mono skill" x="960" y="443" text-anchor="middle">/script-doctor</text>
+  <text class="mono out" x="960" y="463" text-anchor="middle">video scripts</text>
+  <line x1="960" y1="385" x2="960" y2="267" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- B-roll video (output branch from Script) -->
+  <rect x="1052" y="385" width="156" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="1130" y="419" text-anchor="middle" font-size="15">B-roll video</text>
+  <text class="mono skill" x="1130" y="443" text-anchor="middle">/mma-animation</text>
+  <text class="mono out" x="1130" y="463" text-anchor="middle">script → 5K mp4</text>
+  <path d="M1040,265 V328 H1130 V383" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- Google Brand PPTX -->
+  <rect x="1344" y="385" width="156" height="100" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <text class="h" x="1422" y="419" text-anchor="middle" font-size="15">Brand PPTX</text>
+  <text class="mono skill" x="1422" y="443" text-anchor="middle">/google-brand-deck</text>
+  <text class="mono out" x="1422" y="463" text-anchor="middle">html → pptx</text>
+  <line x1="1422" y1="385" x2="1422" y2="267" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+
+  <!-- legend -->
+  <g transform="translate(70,540)">
+    <rect x="0" y="0" width="26" height="18" rx="5" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+    <text x="34" y="14" font-size="14">a stage, and the skill that runs it</text>
+    <rect x="290" y="0" width="26" height="18" rx="5" fill="url(#agent)"/>
+    <text x="324" y="14" font-size="14">model call</text>
+    <rect x="430" y="0" width="26" height="18" rx="5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2"/>
+    <text x="464" y="14" font-size="14">what you read, not make</text>
+    <line x1="660" y1="9" x2="700" y2="9" stroke="#94A3B8" stroke-width="2"/>
+    <text x="708" y="14" font-size="14">every deck</text>
+    <line x1="810" y1="9" x2="850" y2="9" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="858" y="14" font-size="14">when needed</text>
+  </g>
+
+  <!-- caveat strip -->
+  <rect x="70" y="578" width="1460" height="70" rx="14" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="100" y="606" font-size="17" font-weight="700" style="fill:#92400E">The loop that makes it work: render → look at every PNG full size → correct it in plain words → write the correction into the SKILL.md.</text>
+  <text x="100" y="632" font-size="15" style="fill:#B45309">Every stage reads the real code, never memory. Few words per box: a name and one sub. The skills are what eight review passes left behind.</text>
+</svg>

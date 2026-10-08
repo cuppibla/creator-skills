@@ -1,0 +1,114 @@
+/* ============================================================
+   MMA theme: LUXE — high-end "Ethereal Glass" look, adapted from
+   taste-skill/soft-skill (github.com/leonxlnx/taste-skill):
+   OLED black + radial mesh orbs, glass hairline borders, inset
+   highlights, rounded-full pills, Plus Jakarta Sans.
+   Load AFTER mma.css. Same components, engine, and sizes.
+   ============================================================ */
+:root {
+  --bg:    #050505;
+  --ink:   #F4F2FA;
+  --muted: rgba(244, 242, 250, 0.62);
+  --faint: rgba(244, 242, 250, 0.34);
+
+  --blue:   #93C5FD;
+  --blue-tint:   rgba(147, 197, 253, 0.10);
+  --green:  #6EE7B7;
+  --green-tint:  rgba(110, 231, 183, 0.10);
+  --amber:  #F3D08B;
+  --amber-tint:  rgba(243, 208, 139, 0.10);
+  --purple: #C4B5FD;
+  --purple-tint: rgba(196, 181, 253, 0.12);
+
+  --card: rgba(255, 255, 255, 0.04);
+
+  --r-card: 32px;
+  --r-box:  999px;
+
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --shadow-card: inset 0 1px 1px rgba(255,255,255,0.15), 0 24px 60px rgba(0,0,0,0.6);
+  --glow-blue:   0 0 70px 18px rgba(139, 92, 246, 0.28);
+  --glow-purple: 0 0 70px 20px rgba(139, 92, 246, 0.38);
+  --glow-green:  0 0 70px 18px rgba(52, 211, 153, 0.25);
+}
+
+html, body { background: #000; }
+
+/* mesh-gradient canvas */
+.stage {
+  background:
+    radial-gradient(640px 420px at 18% 12%, rgba(139, 92, 246, 0.17), transparent 65%),
+    radial-gradient(560px 400px at 86% 82%, rgba(52, 211, 153, 0.11), transparent 65%),
+    var(--bg);
+}
+
+.kicker {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(244, 242, 250, 0.85);
+  letter-spacing: 0.3em; font-weight: 500;
+}
+.kicker--amber  { background: rgba(255,255,255,0.05); color: var(--amber); }
+.kicker--green  { background: rgba(255,255,255,0.05); color: var(--green); }
+.kicker--purple { background: rgba(255,255,255,0.05); color: var(--purple); }
+
+.pill {
+  border-width: 1px; border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink); font-weight: 700;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+}
+.pill--green { border-color: rgba(110,231,183,0.35); background: var(--green-tint); color: var(--green); }
+.pill--amber { border-color: rgba(243,208,139,0.35); background: var(--amber-tint); color: var(--amber); }
+.pill--purple{ border-color: rgba(196,181,253,0.4);  background: var(--purple-tint); color: var(--purple); }
+.pill--dim   { border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: var(--faint); box-shadow: none; }
+
+.card { border: 1px solid rgba(255, 255, 255, 0.12); }
+.card__title { color: #FFFFFF; font-weight: 800; letter-spacing: -0.02em; }
+
+.chip { background: rgba(255,255,255,0.07); color: rgba(244,242,250,0.8); letter-spacing: 0.24em; font-weight: 500; }
+.chip--purple { background: var(--purple-tint); color: var(--purple); }
+.chip--green  { background: var(--green-tint);  color: var(--green); }
+.chip--amber  { background: var(--amber-tint);  color: var(--amber); }
+
+.step {
+  border-width: 1px; border-radius: 24px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+  font-weight: 800; letter-spacing: -0.01em;
+}
+.step--blue  { border-color: rgba(147,197,253,0.3); background: var(--blue-tint);  color: var(--blue); }
+.step--green { border-color: rgba(110,231,183,0.3); background: var(--green-tint); color: var(--green); }
+.step--amber { border-color: rgba(243,208,139,0.3); background: var(--amber-tint); color: var(--amber); }
+.step.is-active {
+  background: #F5F3FF; border-color: #F5F3FF; color: #17111F;
+  box-shadow: var(--glow-purple);
+}
+
+.flow .arrow { color: rgba(244, 242, 250, 0.4); }
+
+.orb {
+  background: radial-gradient(circle at 38% 32%, #A78BFA 0%, #7C5CE0 45%, #1F9D6E 115%);
+  box-shadow: var(--glow-purple);
+}
+.orb--green  { background: radial-gradient(circle at 38% 32%, #6EE7B7 0%, #34D399 50%, #7C5CE0 130%); box-shadow: var(--glow-green); }
+.orb--purple { background: radial-gradient(circle at 38% 32%, #C4B5FD 0%, #8B5CF6 55%, #4C1D95 110%); }
+.orb__halo { background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(139,92,246,0) 70%); }
+
+.wave i { background: #A78BFA; box-shadow: 0 0 16px rgba(139, 92, 246, 0.5); }
+.wave--green i { background: #34D399; box-shadow: 0 0 16px rgba(52, 211, 153, 0.5); }
+
+.fn-chip { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); }
+.fn-chip .fn { color: var(--green); }
+.fn-chip .name { color: rgba(244,242,250,0.9); }
+.fn-chip--dim { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); }
+.fn-chip--dim .name { color: var(--faint); }
+
+.speech { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); color: var(--ink); }
+.speech--purple { background: var(--purple-tint); border-color: rgba(196,181,253,0.4); color: var(--purple); }
+
+.headline { font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF; }
+
+.mma-table { border: 1px solid rgba(255,255,255,0.12); box-shadow: none; }
+.mma-table th { background: rgba(255,255,255,0.08); color: var(--ink); }
+.mma-table td { background: rgba(255,255,255,0.03); color: var(--muted); }

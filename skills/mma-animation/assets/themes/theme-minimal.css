@@ -1,0 +1,107 @@
+/* ============================================================
+   MMA theme: MINIMAL — premium utilitarian editorial (Notion /
+   Linear), adapted from taste-skill/minimalist-skill
+   (github.com/leonxlnx/taste-skill): warm off-white, exact pastel
+   accents, 1px #EAEAEA borders, serif headlines, near-zero shadow.
+   Load AFTER mma.css. Same components, engine, and sizes.
+   ============================================================ */
+:root {
+  --bg:    #FBFBFA;
+  --ink:   #2F3437;
+  --muted: #787774;
+  --faint: #B4B3AF;
+
+  /* the skill's exact pastel semantic pairs */
+  --blue:   #1F6C9F;
+  --blue-tint:   #E1F3FE;
+  --green:  #346538;
+  --green-tint:  #EDF3EC;
+  --amber:  #956400;
+  --amber-tint:  #FBF3DB;
+  --purple: #9F2F2D;             /* pale-red pair fills the 4th slot */
+  --purple-tint: #FDEBEC;
+
+  --card: #FFFFFF;
+
+  --r-card: 12px;
+  --r-box:  10px;
+
+  --sans: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --glow-blue: none; --glow-purple: none; --glow-green: none;
+}
+
+html, body { background: #EFEEE9; }
+
+.kicker {
+  background: #FFFFFF; border: 1px solid #EAEAEA;
+  color: var(--muted); font-weight: 500; letter-spacing: 0.22em;
+}
+.kicker--amber  { background: var(--amber-tint);  border-color: #F1E4C0; color: var(--amber); }
+.kicker--green  { background: var(--green-tint);  border-color: #D8E5D6; color: var(--green); }
+.kicker--purple { background: var(--purple-tint); border-color: #F4D7D9; color: var(--purple); }
+
+.pill {
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: var(--blue-tint); color: var(--blue);
+  font-weight: 700; box-shadow: none;
+}
+.pill--green { border-color: rgba(0,0,0,0.07); background: var(--green-tint); color: var(--green); }
+.pill--amber { border-color: rgba(0,0,0,0.07); background: var(--amber-tint); color: var(--amber); }
+.pill--purple{ border-color: rgba(0,0,0,0.07); background: var(--purple-tint); color: var(--purple); }
+.pill--dim   { border-color: #EAEAEA; background: #F7F6F3; color: var(--faint); }
+
+.card { border: 1px solid #EAEAEA; }
+.card__title { color: #111111; font-weight: 800; letter-spacing: -0.02em; }
+
+.chip { background: var(--blue-tint); color: var(--blue); font-weight: 500; }
+.chip--purple { background: var(--purple-tint); color: var(--purple); }
+.chip--green  { background: var(--green-tint);  color: var(--green); }
+.chip--amber  { background: var(--amber-tint);  color: var(--amber); }
+
+.step { border: 1px solid rgba(0, 0, 0, 0.08); font-weight: 800; letter-spacing: -0.01em; }
+.step--blue  { background: var(--blue-tint);  color: var(--blue);  border-color: rgba(0,0,0,0.08); }
+.step--green { background: var(--green-tint); color: var(--green); border-color: rgba(0,0,0,0.08); }
+.step--amber { background: var(--amber-tint); color: var(--amber); border-color: rgba(0,0,0,0.08); }
+.step.is-active {
+  background: #111111; border-color: #111111; color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.flow .arrow { color: var(--faint); }
+
+.orb {
+  background: var(--blue-tint);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.orb--green  { background: var(--green-tint); }
+.orb--purple { background: var(--purple-tint); }
+.orb__halo { display: none; }
+
+.wave i { background: #9CC3DB; }
+.wave--green i { background: #A9C4A7; }
+
+.fn-chip { border: 1px solid #EAEAEA; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.fn-chip .fn { color: var(--green); }
+.fn-chip .name { color: var(--ink); }
+.fn-chip--dim { background: #F7F6F3; border-color: #EAEAEA; box-shadow: none; }
+.fn-chip--dim .name { color: var(--faint); }
+
+.speech { background: #111111; color: #FFFFFF; border-radius: 8px; }
+.speech--purple { background: #111111; color: #FFFFFF; }
+
+/* editorial serif headlines */
+.headline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400; font-size: 64px;
+  letter-spacing: -0.01em; color: #111111;
+}
+.headline .hl-blue, .headline .hl-green, .headline .hl-amber, .headline .hl-purple { font-style: italic; }
+
+.caption { font-weight: 600; }
+
+.mma-table { border: 1px solid #EAEAEA; box-shadow: none; }
+.mma-table th { background: #F7F6F3; color: var(--ink); }
+.mma-table td { background: #FFFFFF; color: var(--muted); }

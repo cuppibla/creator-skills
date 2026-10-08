@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MMA animation</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="mma.css">
+</head>
+<body>
+<div class="stage">
+
+  <!-- One .scene per script beat. data-dur in seconds.
+       data-script = the narration lines this beat covers (REQUIRED —
+       it becomes the clip↔script manifest for editing). -->
+  <section class="scene" data-id="hook" data-dur="6"
+           data-script="That is a live voice agent. … Like a phone call.">
+    <div class="kicker" data-at="0.2" data-fx="drop">KICKER TEXT</div>
+    <div class="content">
+      <!-- components here; cue with data-at (scene-relative seconds) -->
+    </div>
+  </section>
+
+</div>
+<script src="engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    text { font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; fill: #0F172A; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; }
+    .title { font-size: 34px; font-weight: 700; }
+    .sub { font-size: 20px; fill: #64748B; }
+    .tag { font-size: 18px; font-weight: 600; fill: #334155; }
+    .lbl { font-size: 15px; fill: #64748B; }
+  </style>
+  <defs>
+    <linearGradient id="agent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker>
+    <marker id="arrV" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8B5CF6"/></marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#10B981"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#FFFFFF"/>
+
+  <text class="title" x="70" y="84">TITLE — the one-sentence claim</text>
+  <text class="sub" x="70" y="122">sub — the mechanism in one line</text>
+
+  <!-- container -->
+  <rect x="70" y="170" width="460" height="300" rx="18" fill="#F8FAFC" fill-opacity="0.6" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+  <text class="mono tag" x="96" y="206">process.py · :PORT</text>
+
+  <!-- LLM node -->
+  <rect x="110" y="240" width="300" height="90" rx="14" fill="url(#agent)"/>
+  <text class="mono" x="260" y="280" text-anchor="middle" font-size="19" font-weight="600" style="fill:#FFFFFF">✦ agent_node</text>
+  <text class="mono" x="260" y="306" text-anchor="middle" font-size="13" style="fill:#FFFFFF" opacity="0.85">sublabel ≤ 36 chars at this width</text>
+
+  <!-- judge node -->
+  <rect x="620" y="240" width="300" height="90" rx="14" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <text class="mono" x="770" y="280" text-anchor="middle" font-size="19" font-weight="600" style="fill:#047857">pure_function</text>
+  <text class="mono" x="770" y="306" text-anchor="middle" font-size="13" style="fill:#059669">deterministic</text>
+
+  <!-- numbered arrow -->
+  <line x1="410" y1="285" x2="612" y2="285" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>
+  <circle cx="511" cy="285" r="15" fill="#0F172A"/>
+  <text x="511" y="290" text-anchor="middle" font-size="14" font-weight="700" style="fill:#FFFFFF">1</text>
+  <text class="mono lbl" x="511" y="264" text-anchor="middle">what flows</text>
+
+  <!-- legend -->
+  <g transform="translate(70,760)">
+    <rect x="0" y="0" width="26" height="18" rx="5" fill="url(#agent)"/>
+    <text x="34" y="14" font-size="14">LLM call</text>
+    <rect x="140" y="0" width="26" height="18" rx="5" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="174" y="14" font-size="14">deterministic judge</text>
+  </g>
+
+  <!-- caveat strip -->
+  <rect x="70" y="800" width="1460" height="80" rx="14" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="100" y="835" font-size="18" font-weight="700" style="fill:#92400E">⚠ The one caveat worth remembering.</text>
+  <text x="100" y="862" font-size="16" style="fill:#B45309">Second line: the concrete numbers.</text>
+</svg>

@@ -1,0 +1,85 @@
+/* ============================================================
+   MMA theme: BLUEPRINT — engineering-drawing look. Grid paper,
+   line-drawn boxes, dashed connectors, mono-forward type.
+   Load AFTER mma.css. Same components, engine, and sizes.
+   ============================================================ */
+:root {
+  --bg:    #0E2A47;
+  --ink:   #E9F3FC;
+  --muted: #A9C6DE;
+  --faint: #5F86A8;
+
+  --blue:   #6FD3FF;                      /* cyan chalk */
+  --blue-tint:   rgba(111, 211, 255, 0.10);
+  --green:  #7FE3B3;
+  --green-tint:  rgba(127, 227, 179, 0.10);
+  --amber:  #FFC24D;
+  --amber-tint:  rgba(255, 194, 77, 0.12);
+  --purple: #C9B8FF;
+  --purple-tint: rgba(201, 184, 255, 0.12);
+
+  --card: rgba(255, 255, 255, 0.05);
+
+  --shadow-card: none;
+  --glow-blue:   0 0 40px 8px rgba(111, 211, 255, 0.22);
+  --glow-purple: 0 0 40px 10px rgba(201, 184, 255, 0.30);
+  --glow-green:  0 0 40px 8px rgba(127, 227, 179, 0.22);
+}
+
+html, body { background: #081C31; }
+
+/* grid paper */
+.stage {
+  background:
+    repeating-linear-gradient(0deg,   rgba(233,243,252,0.10) 0 1px, transparent 1px 160px),
+    repeating-linear-gradient(90deg,  rgba(233,243,252,0.10) 0 1px, transparent 1px 160px),
+    repeating-linear-gradient(0deg,   rgba(233,243,252,0.045) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg,  rgba(233,243,252,0.045) 0 1px, transparent 1px 40px),
+    var(--bg);
+}
+
+/* everything line-drawn + mono */
+.pill, .step, .card__title, .headline, .caption { font-family: var(--mono); }
+
+.kicker { background: transparent; border: 2px dashed rgba(233,243,252,0.45); color: var(--ink); }
+.kicker--amber  { border-color: rgba(255,194,77,0.55);  color: var(--amber);  background: transparent; }
+.kicker--green  { border-color: rgba(127,227,179,0.55); color: var(--green);  background: transparent; }
+.kicker--purple { border-color: rgba(201,184,255,0.55); color: var(--purple); background: transparent; }
+
+.pill        { border-width: 2.5px; font-weight: 700; }
+.pill--amber { background: var(--amber-tint); color: var(--amber); }
+.step--amber { background: var(--amber-tint); color: var(--amber); }
+.pill--dim   { border-color: rgba(233,243,252,0.28); border-style: dashed; background: transparent; color: rgba(233,243,252,0.45); }
+
+.card { border: 2.5px solid rgba(233,243,252,0.55); }
+.card__title { color: var(--ink); font-weight: 700; }
+
+.chip { border: 1.5px solid currentColor; background: transparent; }
+
+.step { border-width: 2.5px; font-weight: 700; }
+.step.is-active { background: var(--blue); border-color: var(--blue); color: #0B2440; box-shadow: var(--glow-blue); }
+
+.flow .arrow { color: var(--amber); }
+
+.orb {
+  background: radial-gradient(circle at 42% 38%, rgba(111,211,255,0.35) 0%, rgba(111,211,255,0.12) 60%, transparent 100%);
+  border: 2.5px solid var(--blue);
+}
+.orb--green  { background: radial-gradient(circle at 42% 38%, rgba(127,227,179,0.35) 0%, rgba(127,227,179,0.12) 60%, transparent 100%); border-color: var(--green); box-shadow: var(--glow-green); }
+.orb--purple { background: radial-gradient(circle at 42% 38%, rgba(201,184,255,0.35) 0%, rgba(201,184,255,0.12) 60%, transparent 100%); border-color: var(--purple); box-shadow: var(--glow-purple); }
+.orb__halo   { background: radial-gradient(circle, rgba(111,211,255,0.15) 0%, rgba(111,211,255,0) 70%); }
+
+.wave i { background: var(--blue); }
+.wave--green i { background: var(--green); }
+
+.fn-chip { border: 2.5px solid rgba(233,243,252,0.5); box-shadow: none; background: rgba(255,255,255,0.04); }
+.fn-chip .name { color: var(--ink); }
+.fn-chip--dim { border-style: dashed; background: transparent; }
+.fn-chip--dim .name { color: rgba(233,243,252,0.4); }
+
+.speech { background: transparent; border: 2.5px solid var(--blue); color: var(--blue); }
+.speech--purple { background: transparent; border-color: var(--purple); color: var(--purple); }
+
+.mma-table { border: 2px solid rgba(233,243,252,0.5); box-shadow: none; }
+.mma-table th { background: rgba(111,211,255,0.18); color: var(--blue); }
+.mma-table td { background: transparent; color: var(--muted); }

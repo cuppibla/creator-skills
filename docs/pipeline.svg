@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="440" viewBox="0 0 1600 440">
+  <style>
+    text { font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; fill: #0F172A; }
+    .mono { font-family: "SF Mono", Menlo, Consolas, monospace; }
+    .title { font-size: 34px; font-weight: 700; }
+    .sub { font-size: 20px; fill: #64748B; }
+    .h { font-size: 28px; font-weight: 700; }
+    .skill { font-size: 16px; font-weight: 700; fill: #4F46E5; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker>
+  </defs>
+  <rect width="1600" height="440" fill="#FFFFFF"/>
+
+  <text class="title" x="70" y="64">How a deck gets made</text>
+  <text class="sub" x="70" y="98">Four stages, one skill each. The script lands in the speaker notes.</text>
+
+  <!-- 1 Story plan -->
+  <rect x="70" y="150" width="280" height="150" rx="16" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2.5"/>
+  <text class="h" x="210" y="222" text-anchor="middle">Story plan</text>
+  <text class="mono skill" x="210" y="258" text-anchor="middle" style="fill:#B45309">no skill yet</text>
+
+  <!-- 2 Diagrams -->
+  <rect x="385" y="150" width="280" height="150" rx="16" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2.5"/>
+  <text class="h" x="525" y="210" text-anchor="middle">Diagrams</text>
+  <text class="mono skill" x="525" y="246" text-anchor="middle">/cream-deck</text>
+  <text class="mono skill" x="525" y="270" text-anchor="middle">/arch-diagram</text>
+
+  <!-- 3 Deck -->
+  <rect x="700" y="150" width="280" height="150" rx="16" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2.5"/>
+  <text class="h" x="840" y="210" text-anchor="middle">Deck</text>
+  <text class="mono skill" x="840" y="246" text-anchor="middle">/cream-deck</text>
+  <text class="mono" x="840" y="270" text-anchor="middle" font-size="15" style="fill:#64748B">html → pptx</text>
+
+  <!-- 4 Script -->
+  <rect x="1015" y="150" width="280" height="150" rx="16" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2.5"/>
+  <text class="h" x="1155" y="210" text-anchor="middle">Script</text>
+  <text class="mono skill" x="1155" y="246" text-anchor="middle">/plain-script</text>
+  <text class="mono skill" x="1155" y="270" text-anchor="middle">/teleprompter-polish</text>
+
+  <!-- output -->
+  <rect x="1330" y="150" width="200" height="150" rx="16" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2.5"/>
+  <text class="h" x="1430" y="222" text-anchor="middle">PPTX</text>
+  <text class="mono" x="1430" y="258" text-anchor="middle" font-size="15" style="fill:#92400E">slides + notes</text>
+
+  <!-- arrows -->
+  <line x1="350" y1="225" x2="383" y2="225" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="665" y1="225" x2="698" y2="225" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="980" y1="225" x2="1013" y2="225" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="1295" y1="225" x2="1328" y2="225" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- one bottom line -->
+  <text x="800" y="380" text-anchor="middle" font-size="24" font-weight="700">Every correction you give becomes a rule in the skill.</text>
+</svg>

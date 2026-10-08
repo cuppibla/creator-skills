@@ -1,0 +1,120 @@
+/* ============================================================
+   MMA theme: INDUSTRIAL — Swiss brutalist print, adapted from
+   taste-skill/brutalist-skill (github.com/leonxlnx/taste-skill):
+   unbleached paper, carbon ink, aviation red as the ONLY accent,
+   zero border radius, Archivo Black headers, mono telemetry.
+   Load AFTER mma.css. Same components, engine, and sizes.
+   ============================================================ */
+:root {
+  --bg:    #F4F4F0;
+  --ink:   #0A0A0A;
+  --muted: #44443F;
+  --faint: #8D8D86;
+
+  /* monochrome + one red: color slots collapse deliberately */
+  --blue:   #0A0A0A;
+  --blue-tint:   transparent;
+  --green:  #0A0A0A;
+  --green-tint:  transparent;
+  --amber:  #E61919;
+  --amber-tint:  transparent;
+  --purple: #E61919;
+  --purple-tint: transparent;
+
+  --card: transparent;
+
+  --r-card: 0px;
+  --r-box:  0px;
+
+  --display: 'Archivo Black', 'Arial Black', sans-serif;
+
+  --shadow-card: none;
+  --glow-blue: none; --glow-purple: none; --glow-green: none;
+}
+
+html, body { background: #DDDDD6; }
+
+.kicker {
+  background: transparent; border: 2px solid var(--ink);
+  border-radius: 0; color: var(--ink);
+  font-weight: 700; letter-spacing: 0.18em;
+}
+.kicker::before { content: '[ '; color: #E61919; }
+.kicker::after  { content: ' ]'; color: #E61919; }
+.kicker--amber, .kicker--green, .kicker--purple {
+  background: transparent; border-color: var(--ink); color: var(--ink);
+}
+
+.pill {
+  font-family: var(--mono); text-transform: uppercase;
+  border: 2.5px solid var(--ink); background: transparent;
+  color: var(--ink); font-weight: 700; font-size: 28px;
+  letter-spacing: 0.04em; box-shadow: none;
+}
+.pill--green, .pill--purple { border-color: var(--ink); background: transparent; color: var(--ink); }
+.pill--amber { border-color: #E61919; background: transparent; color: #E61919; }
+.pill--dim   { border: 1.5px dashed var(--faint); background: transparent; color: var(--faint); }
+
+.card { border: 2.5px solid var(--ink); }
+.card__title { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: -0.02em; color: var(--ink); }
+.card__sub { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-size: 20px; }
+
+.chip { border: 1.5px solid var(--ink); background: transparent; color: var(--ink); border-radius: 0; }
+.chip--purple, .chip--green { border-color: var(--ink); background: transparent; color: var(--ink); }
+.chip--amber { border-color: #E61919; background: transparent; color: #E61919; }
+
+.step {
+  font-family: var(--display); font-weight: 400; text-transform: uppercase;
+  border: 2.5px solid var(--ink); font-size: 34px; letter-spacing: 0;
+}
+.step--blue, .step--green { background: transparent; color: var(--ink); border-color: var(--ink); }
+.step--amber { background: transparent; color: #E61919; border-color: #E61919; }
+.step.is-active { background: #E61919; border-color: #E61919; color: #F4F4F0; box-shadow: none; }
+
+.flow .arrow { color: var(--ink); }
+
+.orb {
+  background: transparent; border: 3px solid var(--ink);
+  box-shadow: none; position: relative;
+}
+.orb::after {
+  content: '+'; position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-weight: 700; font-size: 56px;
+  color: #E61919; line-height: 1;
+}
+.orb--green, .orb--purple { background: transparent; border-color: var(--ink); }
+.orb__halo { display: none; }
+.orb-wrap[data-loop="pulse"] .orb { transform: none; }
+.orb-wrap[data-loop="pulse"] .orb__halo { transform: none; }
+
+.wave { gap: 6px; }
+.wave i { background: var(--ink); border-radius: 0; width: 10px; }
+.wave--green i { background: var(--ink); }
+
+.fn-chip { border: 2.5px solid var(--ink); background: transparent; box-shadow: none; }
+.fn-chip .fn { color: #E61919; }
+.fn-chip .name { color: var(--ink); }
+.fn-chip--dim { border: 1.5px dashed var(--faint); background: transparent; }
+.fn-chip--dim .name { color: var(--faint); }
+
+.speech { background: var(--ink); color: #F4F4F0; border-radius: 0; text-transform: uppercase; }
+.speech--purple { background: var(--ink); color: #F4F4F0; }
+
+.headline {
+  font-family: var(--display); font-weight: 400;
+  text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95;
+  color: var(--ink);
+}
+.headline .hl-blue, .headline .hl-green { color: var(--ink); }
+.headline .hl-amber, .headline .hl-purple { color: #E61919; }
+
+.caption {
+  font-family: var(--mono); text-transform: uppercase;
+  letter-spacing: 0.08em; font-size: 24px; font-weight: 700;
+  color: var(--muted);
+}
+
+.mma-table { border: 2.5px solid var(--ink); box-shadow: none; border-radius: 0; }
+.mma-table th { background: var(--ink); color: #F4F4F0; }
+.mma-table td { background: transparent; color: var(--ink); }
