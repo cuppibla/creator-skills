@@ -1,7 +1,7 @@
 # MMA explainer style guide
 
 Reverse-engineered from Annie's Claude-Design episode animations
-(`~/Documents/video_editing/mma/assets/*/*.mp4`, 5120×2880 @ 30fps).
+(the original MMA episode exports, 5120×2880 @ 30fps).
 Every new animation must be indistinguishable in style from those.
 
 ## The look in one paragraph

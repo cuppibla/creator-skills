@@ -63,3 +63,8 @@ skills/<name>/assets/      kits, templates, icons, scripts
 docs/                      the pipeline diagrams (svg + png)
 install.sh                 user | local
 ```
+
+## Third-party
+
+- Fonts in `skills/mma-animation/assets/fonts/` are under the SIL Open Font License 1.1; see `OFL.txt` there.
+- The `luxe`, `minimal` and `industrial` animation themes are adapted from [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT); its license is in `skills/mma-animation/assets/themes/LICENSE-taste-skill`.
