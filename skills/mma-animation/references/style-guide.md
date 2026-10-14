@@ -1,7 +1,7 @@
 # MMA explainer style guide
 
-Reverse-engineered from Annie's Claude-Design episode animations
-(the original MMA episode exports, 5120×2880 @ 30fps).
+Reverse-engineered from Annie's original MMA episode animations
+(the original episode exports, 5120×2880 @ 30fps).
 Every new animation must be indistinguishable in style from those.
 
 ## The look in one paragraph

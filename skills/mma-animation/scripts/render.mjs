@@ -54,7 +54,7 @@ const defaultName = path.basename(path.dirname(htmlPath)).replace(/[-_ ]+(\w)/g,
 const OUT = path.resolve(opt('out', path.join(path.dirname(htmlPath), `${defaultName}.mp4`)));
 
 // ---------- cooperative render queue ----------
-// Several Claude sessions can be rendering episodes on this machine at the
+// Several agent sessions can be rendering episodes on this machine at the
 // same time. Full video renders are CPU/RAM-heavy at 5K, so they take a
 // slot (max 2 concurrent, atomic mkdir under ~/.mma-render-queue) and wait
 // politely when busy; --still and --manifest-only are quick and skip the

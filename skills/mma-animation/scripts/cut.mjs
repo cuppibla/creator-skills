@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* ============================================================
    MMA clip cutter — slice an EXISTING video into b-roll clips.
-   For videos that carry no scene metadata (e.g. Claude Design
-   exports). Skill-generated animations don't need this: their
+   For videos that carry no scene metadata (e.g. the original
+   episode exports). Skill-generated animations don't need this: their
    clips are cut automatically at scene boundaries by render.mjs.
 
    node cut.mjs <video.mp4> --at 0:10,0:21,1:07 [options]

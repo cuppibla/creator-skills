@@ -62,7 +62,9 @@ Budget per diagram: ≤ 12 boxes · ≤ 60 words outside code · ≤ 1 strip · 
 1. **Story plan first** (`week4-deck-story-plan.md` is the model): acts = the lab's ladder, each
    act opens on a "where we are" card, one line per slide saying what it shows. Review with her
    before drawing anything ("先别急着生成课件 我们一起理一下故事脉络").
-2. **Diagrams:** copy `assets/svgkit_cream.py` + `assets/build_cream.sh` into `<deck>/img/src/`,
+2. **Diagrams:** copy `assets/svgkit_cream.py` + `assets/build_cream.sh` + the `assets/icons/`
+   folder into `<deck>/img/src/` (so `img/src/icons/` exists — both the renderer and the PPTX
+   builder look there, or at `ICONS=/path`),
    write `make_cream.py` there (start from `assets/example-make_cream.py` — 29 sparse patterns:
    tower/act cards, pipelines, two-column verbs, timelines, schema→graph, MATCH, RAG ladder,
    tables). Each function = one diagram, saved as `c<N>-<slug>.svg`. `./build_cream.sh` inlines
@@ -107,15 +109,15 @@ Budget per diagram: ≤ 12 boxes · ≤ 60 words outside code · ≤ 1 strip · 
 - `assets/svgkit_cream.py` — the paint: `Svg`, `title/text/lines`, `box/model/container/store/
   panel/note/cylinder/icon/arrow/step/cross`, `KIND` colours. `note()` exists but is off-budget;
   use `strip` (in the example make file) instead.
-- `assets/build_cream.sh` — render script (Chrome 2×, icons from `assets/icons/`, `ICONS=` to override).
+- `assets/build_cream.sh` — render script (Chrome 2×, icons from `./icons/` next to it, `ICONS=` to override).
 - `assets/example-make_cream.py` — the week-4 set, sparse: copy functions as patterns.
 - `assets/example-index.html` — a complete working deck (56 slides) to start from.
 - `assets/shoot_deck.py` — per-slide screenshots + 2×2 review grids.
 - `assets/deckdata.py` · `assets/extract_layout.py` · `assets/build_pptx.py` · `assets/verify_pptx.py`
   — the PPTX pipeline (step 7).
 - `assets/icons/icon-{bell,bike,cloud,desk,jar,notepad,polaroid,shelf,thread,warehouse}.png` — the
-  felt corner icons (`s.icon("desk")`). New icons: Nano Banana in the same felt register
-  (see `Topics/agent-memory-workshop/slide-diagrams/icons/gen_icons.py`).
+  felt corner icons (`s.icon("desk")`). New icons: Nano Banana in the same felt register,
+  seeded with the existing ten as reference images.
 
 ## Gotchas
 
