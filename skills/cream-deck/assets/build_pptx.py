@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -32,9 +33,11 @@ from lxml import etree
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / "build"
 SRC = ROOT / "img" / "src"
-ICONS = Path.home() / ".claude/skills/cream-deck/assets/icons"
+# The felt icon set: $ICONS, else the copy next to the diagram sources (img/src/icons),
+# else the skill's own assets/icons when this script runs from inside the skill folder.
+ICONS = Path(os.environ["ICONS"]) if os.environ.get("ICONS") else SRC / "icons"
 if not ICONS.exists():
-    ICONS = ROOT.parents[1] / "Topics/agent-memory-workshop/slide-diagrams/icons"
+    ICONS = Path(__file__).resolve().parent / "icons"
 
 sys.path.insert(0, str(ROOT / "tools"))
 import deckdata  # noqa: E402

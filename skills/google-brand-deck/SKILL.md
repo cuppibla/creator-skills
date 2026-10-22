@@ -26,7 +26,7 @@ If she names a specific connector or asks for Google Slides direct API output, f
 6. Render to PDF, screenshot every slide
 7. Visual QA — fix overflow, wrapping, overlap, clipping
 8. Re-render until clean
-9. Copy to /mnt/user-data/outputs/ and call present_files
+9. Deliver: report the .pptx path (and surface the file if your agent can)
 ```
 
 Never skip step 6. Every deck so far has had at least one issue that only surfaced after rendering (code block overflowing a card, table extending past its column, badge wrapping to two lines, arrow label clashing with arrow). Budget ~2-3 fixes per deck.
@@ -134,8 +134,8 @@ Resist the urge to add a helper for a one-off layout. The library is for things 
 
 ## Delivery
 
-1. `cp` the final .pptx to `/mnt/user-data/outputs/`
-2. Call `present_files` with the path
+1. Leave the final .pptx in the deck's working folder (or wherever Annie asked for it)
+2. Report the absolute path, and if your agent has a way to surface files to the user, use it
 3. Write a 3-paragraph delivery note: what's in it, the Google Slides import flow, any fidelity approximations made (font fallback, gradient flattening, etc.)
 4. Offer to extend it if there's a next section coming
 

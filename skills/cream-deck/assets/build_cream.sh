@@ -3,11 +3,12 @@
 #   ./build_cream.sh            all c*.svg produced by make_cream.py
 #   ./build_cream.sh c4 c9      some
 # Run from the folder that holds make_cream.py and svgkit_cream.py. PNGs land in ../ (the deck's img/).
-# ICONS: the felt icon set — defaults to this skill's assets/icons; override with ICONS=/path.
+# ICONS: the felt icon set — defaults to ./icons (copy the skill's assets/icons here); override with ICONS=/path.
 set -e
 cd "$(dirname "$0")"
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-ICONS="${ICONS:-$HOME/.claude/skills/cream-deck/assets/icons}"
+ICONS="${ICONS:-$PWD/icons}"
+[ -d "$ICONS" ] || { echo "icons not found at $ICONS — copy the skill's assets/icons here or set ICONS=/path" >&2; exit 1; }
 python3 make_cream.py >/dev/null
 for src in c*.svg; do
   name="${src%.svg}"

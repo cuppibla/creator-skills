@@ -18,7 +18,7 @@ pres.author = "Annie";
 
 const H = require("./helpers.js")(pres, { C, FONT, MONO, SW, SH, ML, MR });
 
-const outFile = "/home/claude/output.pptx";
+const outFile = process.argv[2] || "output.pptx";
 
 // ============================================================
 // SLIDE 1 — Title (example)

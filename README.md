@@ -1,7 +1,8 @@
 # creator-skills
 
-Seven Claude Code skills for making technical presentations and explainer videos:
-diagrams, decks, scripts, and b-roll. Every deck goes through the same four stages,
+Seven agent skills (plain `SKILL.md` folders, usable by any coding agent that reads the
+format) for making technical presentations and explainer videos: diagrams, decks, scripts,
+and b-roll. Every deck goes through the same four stages,
 one skill each, and the script lands in the speaker notes of the PPTX.
 
 ![How a deck gets made](docs/pipeline.png)
@@ -31,9 +32,15 @@ git clone https://github.com/cuppibla/creator-skills
 ./creator-skills/install.sh user
 ```
 
-`user` copies the skills to `~/.claude/skills`; `local` copies them to `./.claude/skills` of the
-current repo. Start a new Claude Code session afterwards. The `SKILL.md` format is read by other
-coding agents too; check yours.
+`user` copies the skills to `~/.agents/skills`; `local` copies them to `./.agents/skills` of the
+current repo. Both are the vendor-neutral locations most coding agents read. If yours looks
+somewhere else, pass the directory instead (`./install.sh ~/.gemini/skills` for Gemini CLI,
+`./install.sh ~/.gemini/config/skills` for Jetski, or any path your agent documents). Then
+start a new agent session, or reload its skills, so they are picked up.
+
+Inside a skill, paths are written relative to the skill's own folder (`<skill-dir>`), i.e.
+wherever the installer put it — the scripts locate their assets from their own location, so no
+path needs editing.
 
 Rendering needs Google Chrome on macOS (`/Applications/Google Chrome.app`), `python3` with
 `Pillow` and `python-pptx`, and Node for `mma-animation` (`npm install` in its `scripts/`, which
